@@ -2,14 +2,7 @@
 # This module provides all the column helper methods to deal with the
 # values and adds the common type management code for the adapters.
 
-column_class = if defined? ActiveRecord::ConnectionAdapters::Mysql2Column
-  ActiveRecord::ConnectionAdapters::Mysql2Column
-else
-  ActiveRecord::ConnectionAdapters::MysqlColumn
-end
-
-column_class.module_eval do
-
+ActiveRecord::ConnectionAdapters::PostgreSQLColumn.module_eval do
   alias __klass_enum klass
   # The class for enum is Symbol.
   def klass
@@ -23,6 +16,7 @@ column_class.module_eval do
   alias __type_cast_enum type_cast
   # Convert to a symbol.
   def type_cast(value)
+puts "TYPE CAST #{value}"
     if type == :enum
       self.class.value_to_symbol(value)
     else
@@ -58,21 +52,11 @@ private
   alias __simplified_type_enum simplified_type
   # The enum simple type.
   def simplified_type(field_type)
-    if field_type =~ /enum/i
+    if field_type == 'simulenum'
       :enum
     else
       __simplified_type_enum(field_type)
     end
   end
-  
-  alias __extract_limit_enum extract_limit
-  def extract_limit(sql_type)
-    if sql_type =~ /^enum/i
-      sql_type.sub(/^enum\('([^)]+)'\)/i, '\1').split("','").map { |v| v.intern }
-    else
-      __extract_limit_enum(sql_type)
-    end
-  end
-
 
 end
