@@ -16,7 +16,6 @@ ActiveRecord::ConnectionAdapters::PostgreSQLColumn.module_eval do
   alias __type_cast_enum type_cast
   # Convert to a symbol.
   def type_cast(value)
-puts "TYPE CAST #{value}"
     if type == :enum
       self.class.value_to_symbol(value)
     else
