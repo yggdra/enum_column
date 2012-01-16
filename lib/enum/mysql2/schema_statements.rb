@@ -1,4 +1,4 @@
-ActiveRecord::ConnectionAdapters::MysqlAdapter.module_eval do
+ActiveRecord::ConnectionAdapters::Mysql2Adapter.module_eval do
   alias __type_to_sql_enum type_to_sql
 
   # will generate enum('a', 'b', 'c') for :limit => [:a, :b, :c]
