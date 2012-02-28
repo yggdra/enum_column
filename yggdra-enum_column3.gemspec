@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = %q{enum_column3}
+  s.name = %q{yggdra-enum_column3}
   s.version = "0.2.0"
   s.authors = ['Nick Pohodnya', 'Daniele Orlandi']
 
