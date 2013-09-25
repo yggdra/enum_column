@@ -1,0 +1,3 @@
+
+
+CREATE DOMAIN simulenum AS character varying(32);

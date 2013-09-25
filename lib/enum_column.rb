@@ -9,6 +9,8 @@ if defined?(::Rails::Railtie)
 
         require 'enum/quoting'
         require 'enum/validations'
+
+        require 'enum/schema_definitions'
       end
 
       ActiveSupport.on_load :action_view do
